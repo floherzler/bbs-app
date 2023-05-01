@@ -24,7 +24,7 @@ class BasketballCourt extends StatelessWidget {
         ),
         // build avatars for 5 players in a 3-man / 2-man side fashion
         // build avatars for every Player in provided TeamCubit
-        ...players.map((player) {
+        ...players.where((e) => e.onCourt).map((player) {
           return _buildAvatar(
             player.courtPosition.x * width,
             player.courtPosition.y * height,
@@ -38,8 +38,7 @@ class BasketballCourt extends StatelessWidget {
 
   Widget _buildAvatar(double left, double top, String text) {
     const double radius = 15;
-    // log name and position to console
-    debugPrint('$text: $left, $top');
+    debugPrint('player $text coordinates: $left, $top');
     return Positioned(
       left: left - radius,
       top: top - radius,

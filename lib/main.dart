@@ -51,6 +51,13 @@ class MyApp extends StatelessWidget {
           courtPosition: CourtPosition.lowPostRight,
           onCourt: true,
           big: true),
+      Player(
+          name: '6',
+          handedness: Handedness.right,
+          favPosition: FavPosition.pointGuard,
+          courtPosition: CourtPosition.lowPostLeft,
+          onCourt: false,
+          big: false),
     ];
     Team team = Team(id: 'bbsHeOL', name: 'BBS Herren OL', players: players);
     return MaterialApp(
