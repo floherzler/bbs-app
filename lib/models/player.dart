@@ -36,13 +36,13 @@ extension CourtPositionExtension on CourtPosition {
       case CourtPosition.cornerLeft:
         return 0.95;
       case CourtPosition.lowPostRight:
-        return 0.65;
-      case CourtPosition.lowPostLeft:
         return 0.35;
+      case CourtPosition.lowPostLeft:
+        return 0.65;
       case CourtPosition.elbowRight:
-        return 0.75;
+        return 0.35;
       case CourtPosition.elbowLeft:
-        return 0.25;
+        return 0.65;
       case CourtPosition.highPost:
         return 0.5;
       default:
@@ -53,7 +53,7 @@ extension CourtPositionExtension on CourtPosition {
   double get y {
     switch (this) {
       case CourtPosition.topOfKey:
-        return 0.3;
+        return 0.35;
       case CourtPosition.wingRight:
         return 0.4;
       case CourtPosition.wingLeft:
@@ -67,11 +67,11 @@ extension CourtPositionExtension on CourtPosition {
       case CourtPosition.lowPostLeft:
         return 0.92;
       case CourtPosition.elbowRight:
-        return 0.5;
+        return 0.72;
       case CourtPosition.elbowLeft:
-        return 0.5;
+        return 0.72;
       case CourtPosition.highPost:
-        return 0.25;
+        return 0.66;
       default:
         return 0;
     }
