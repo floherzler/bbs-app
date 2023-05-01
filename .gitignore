@@ -1,33 +1,57 @@
-# Gradle files
-.gradle/
-build/
+# Flutter/Dart-specific files
+**/.dart_tool/
+**/.idea/
+**/.vscode/
+**/*.iml
+**/ios/Flutter/
+**/ios/Flutter/**.generated.xcconfig
+**/ios/Flutter/**.xcworkspace
+**/ios/Pods/
+**/ios/Podfile.lock
+**/ios/Runner/GeneratedPluginRegistrant.*
 
-# Local configuration file (sdk path, etc)
-local.properties
+# Android-specific files
+**/android/**/gradle-wrapper.jar
+**/android/**/gradle-wrapper.properties
+**/android/**/local.properties
+**/android/**/GeneratedPluginRegistrant.*
 
-# Log/OS Files
-*.log
+# iOS-specific files
+**/ios/Pods/
+**/ios/Flutter/Flutter.framework/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/App.framework/
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/flutter_assets/
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Runner/*.xcworkspace
+**/ios/Runner/*.xcworkspace/xcuserdata/
 
-# Android Studio generated files and folders
-captures/
-.externalNativeBuild/
-.cxx/
-*.apk
-output.json
+# Web-specific files
+**/web/assets/generated/
+**/web/assets/AssetManifest.json
+**/web/assets/FontManifest.json
+**/web/packages/
+**/web/flutter_service_worker.js
+**/web/favicon.ico
+**/web/index.html
+**/web/main.dart.js
+**/web/main.dart.js.map
+**/web/manifest.json
+**/web/service-worker.js
 
-# IntelliJ
-*.iml
+# Build files
+**/build/
+**/ios/build/
+**/android/build/
+**/web/build/
+
+# Generated files
+**/lib/generated_*.dart
+**/lib/*.freezed.dart
+**/lib/*.g.dart
+
+# Other
+.DS_Store
 .idea/
-misc.xml
-deploymentTargetDropDown.xml
-render.experimental.xml
-
-# Keystore files
-*.jks
-*.keystore
-
-# Google Services (e.g. APIs or Firebase)
-google-services.json
-
-# Android Profiling
-*.hprof
+.vscode/
