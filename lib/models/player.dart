@@ -86,6 +86,7 @@ class Player {
   final FavPosition favPosition;
   CourtPosition courtPosition;
   bool onCourt;
+  bool hasBall;
   bool big;
 
   Player({
@@ -94,6 +95,7 @@ class Player {
     this.favPosition = FavPosition.pointGuard,
     this.courtPosition = CourtPosition.wingRight,
     this.onCourt = false,
+    this.hasBall = false,
     this.big = false,
   });
 }

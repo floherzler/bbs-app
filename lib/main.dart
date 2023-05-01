@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
           favPosition: FavPosition.pointGuard,
           courtPosition: CourtPosition.wingRight,
           onCourt: true,
+          hasBall: true,
           big: false),
       Player(
           name: '2',
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
           favPosition: FavPosition.shootingGuard,
           courtPosition: CourtPosition.wingLeft,
           onCourt: true,
+          hasBall: false,
           big: false),
       Player(
           name: '3',
@@ -36,6 +38,7 @@ class MyApp extends StatelessWidget {
           favPosition: FavPosition.smallForward,
           courtPosition: CourtPosition.cornerRight,
           onCourt: true,
+          hasBall: false,
           big: false),
       Player(
           name: '4',
@@ -43,6 +46,7 @@ class MyApp extends StatelessWidget {
           favPosition: FavPosition.powerForward,
           courtPosition: CourtPosition.cornerLeft,
           onCourt: true,
+          hasBall: false,
           big: false),
       Player(
           name: '5',
@@ -50,6 +54,7 @@ class MyApp extends StatelessWidget {
           favPosition: FavPosition.center,
           courtPosition: CourtPosition.lowPostRight,
           onCourt: true,
+          hasBall: false,
           big: true),
       Player(
           name: '6',
@@ -57,6 +62,7 @@ class MyApp extends StatelessWidget {
           favPosition: FavPosition.pointGuard,
           courtPosition: CourtPosition.lowPostLeft,
           onCourt: false,
+          hasBall: false,
           big: false),
     ];
     Team team = Team(id: 'bbsHeOL', name: 'BBS Herren OL', players: players);

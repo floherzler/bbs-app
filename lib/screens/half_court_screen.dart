@@ -17,21 +17,25 @@ class BasketballCourt extends StatelessWidget {
     return SizedBox(
       width: width,
       height: height,
+      // build Stack of court, avatars and basketball
       child: Stack(children: [
         CustomPaint(
           size: MediaQuery.of(context).size,
           painter: CourtPainter(),
         ),
-        // build avatars for 5 players in a 3-man / 2-man side fashion
         // build avatars for every Player in provided TeamCubit
         ...players.where((e) => e.onCourt).map((player) {
           return _buildAvatar(
-            player.courtPosition.x * width,
-            player.courtPosition.y * height,
+            width * player.courtPosition.x,
+            height * player.courtPosition.y,
             player.name,
           );
         }),
-        _buildBasketball(),
+        _buildBasketball(
+          width * players.where((p) => p.hasBall).first.courtPosition.x,
+          height * players.where((p) => p.hasBall).first.courtPosition.y,
+          players.where((p) => p.hasBall).first.handedness,
+        ),
       ]),
     ).center();
   }
@@ -53,13 +57,14 @@ class BasketballCourt extends StatelessWidget {
     );
   }
 
-  Widget _buildBasketball() {
-    return const Positioned(
-      left: 100,
-      top: 100,
-      child: CircleAvatar(
+  Widget _buildBasketball(double left, double top, Handedness handedness) {
+    final handOffset = handedness == Handedness.left ? 5 : -20;
+    return Positioned(
+      left: left + handOffset,
+      top: top + 10,
+      child: const CircleAvatar(
         radius: 10,
-        backgroundColor: Colors.orange,
+        foregroundImage: AssetImage('assets/images/basketball.jpg'),
       ),
     );
   }
