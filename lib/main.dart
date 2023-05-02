@@ -1,9 +1,9 @@
-import 'package:bbs_app/models/team.dart';
 import 'package:bbs_app/screens/half_court_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cubits/team_cubit.dart';
+import 'cubits/team_state.dart';
 import 'models/player.dart';
 
 void main() {
@@ -65,10 +65,15 @@ class MyApp extends StatelessWidget {
           hasBall: false,
           big: false),
     ];
-    Team team = Team(id: 'bbsHeOL', name: 'BBS Herren OL', players: players);
+    TeamState team =
+        TeamState(id: 'bbsHeOL', name: 'BBS Herren OL', players: players);
     return MaterialApp(
       home: MultiBlocProvider(
-        providers: [BlocProvider(create: (context) => TeamCubit(team))],
+        providers: [
+          BlocProvider<TeamCubit>(
+            create: (context) => TeamCubit(team),
+          ),
+        ],
         child: Scaffold(
           appBar: AppBar(
             title: const Text('BBS App'),

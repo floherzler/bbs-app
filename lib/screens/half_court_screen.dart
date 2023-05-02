@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 import '../cubits/team_cubit.dart';
+import '../cubits/team_state.dart';
 
 class BasketballCourt extends StatelessWidget {
   const BasketballCourt({super.key});
@@ -13,30 +14,51 @@ class BasketballCourt extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width * 0.95;
     final height = MediaQuery.of(context).size.width * 0.7;
-    var players = BlocProvider.of<TeamCubit>(context).state.players;
-    return SizedBox(
-      width: width,
-      height: height,
-      // build Stack of court, avatars and basketball
-      child: Stack(children: [
-        CustomPaint(
-          size: MediaQuery.of(context).size,
-          painter: CourtPainter(),
-        ),
-        // build avatars for every Player in provided TeamCubit
-        ...players.where((e) => e.onCourt).map((player) {
-          return _buildAvatar(
-            width * player.courtPosition.x,
-            height * player.courtPosition.y,
-            player.name,
-          );
-        }),
-        _buildBasketball(
-          width * players.where((p) => p.hasBall).first.courtPosition.x,
-          height * players.where((p) => p.hasBall).first.courtPosition.y,
-          players.where((p) => p.hasBall).first.handedness,
-        ),
-      ]),
+
+    return BlocBuilder<TeamCubit, TeamState>(
+      builder: (context, state) {
+        var players = BlocProvider.of<TeamCubit>(context).state.players;
+        return Column(
+          children: [
+            SizedBox(
+              width: width,
+              height: height,
+              // build Stack of court, avatars and basketball
+              child: Stack(children: [
+                CustomPaint(
+                  size: MediaQuery.of(context).size,
+                  painter: CourtPainter(),
+                ),
+                // build avatars for every Player in provided TeamCubit
+                ...BlocProvider.of<TeamCubit>(context)
+                    .state
+                    .players
+                    .where((e) => e.onCourt)
+                    .map((player) {
+                  return _buildAvatar(
+                    width * player.courtPosition.x,
+                    height * player.courtPosition.y,
+                    player.name,
+                  );
+                }),
+                _buildBasketball(
+                  width * players.where((p) => p.hasBall).first.courtPosition.x,
+                  height *
+                      players.where((p) => p.hasBall).first.courtPosition.y,
+                  players.where((p) => p.hasBall).first.handedness,
+                ),
+              ]),
+            ).center(),
+            // elevated button that shuffles players on court
+            ElevatedButton(
+              onPressed: () {
+                BlocProvider.of<TeamCubit>(context).shuffleOnCourt();
+              },
+              child: const Text('Shuffle'),
+            )
+          ],
+        );
+      },
     ).center();
   }
 

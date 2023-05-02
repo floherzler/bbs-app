@@ -1,9 +1,29 @@
+import 'package:bbs_app/cubits/team_state.dart';
 import 'package:bloc/bloc.dart';
-import '../models/team.dart';
 import '../models/player.dart';
 
-class TeamCubit extends Cubit<Team> {
-  TeamCubit(Team team) : super(team);
+class TeamCubit extends Cubit<TeamState> {
+  TeamCubit(TeamState team) : super(team);
+
+  void shuffleOnCourt() {
+    final shuffledPositions = CourtPosition.values.toList()..shuffle();
+    //assign random new position to players on court
+    final updatedPlayers = state.players.map((player) {
+      if (player.onCourt) {
+        return Player(
+          name: player.name,
+          handedness: player.handedness,
+          favPosition: player.favPosition,
+          courtPosition: shuffledPositions.removeLast(),
+          onCourt: true,
+          hasBall: player.hasBall,
+          big: player.big,
+        );
+      }
+      return player;
+    }).toList();
+    emit(TeamState(id: state.id, name: state.name, players: updatedPlayers));
+  }
 
   void substitution(Player inPlayer, Player outPlayer) {
     final updatedPlayers = state.players.map((player) {
@@ -30,6 +50,6 @@ class TeamCubit extends Cubit<Team> {
       }
       return player;
     }).toList();
-    emit(Team(id: state.id, name: state.name, players: updatedPlayers));
+    emit(TeamState(id: state.id, name: state.name, players: updatedPlayers));
   }
 }
